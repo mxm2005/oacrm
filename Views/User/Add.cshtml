@@ -1,0 +1,101 @@
+﻿@model OA_CRM.Models.ADM_USER
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>添加用户</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <legend>ADM_USER</legend>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.USERNAME)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.USERNAME)
+                    @Html.ValidationMessageFor(model => model.USERNAME)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PASSWORD)
+                </div>
+                <div class="editor-field">
+                    @Html.PasswordFor(model => model.PASSWORD)
+                    @Html.ValidationMessageFor(model => model.PASSWORD)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.STATE)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.STATE)
+                    @Html.ValidationMessageFor(model => model.STATE)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.REAL_NAME)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.REAL_NAME)
+                    @Html.ValidationMessageFor(model => model.REAL_NAME)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SEX)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.SEX)
+                    @Html.ValidationMessageFor(model => model.SEX)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BIRTH)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BIRTH)
+                    @Html.ValidationMessageFor(model => model.BIRTH)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ADDRESS)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ADDRESS)
+                    @Html.ValidationMessageFor(model => model.ADDRESS)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TEL)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.TEL)
+                    @Html.ValidationMessageFor(model => model.TEL)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MOBILE)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.MOBILE)
+                    @Html.ValidationMessageFor(model => model.MOBILE)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.POSTCODE)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.POSTCODE)
+                    @Html.ValidationMessageFor(model => model.POSTCODE)
+                </div>
+                <p>
+                    <input type="submit" value="提 交" />
+                </p>
+            </fieldset>
+        }
+        <div>
+            @Html.ActionLink("返回列表", "Index")
+        </div>
+    </div>
+</body>
+</html>
+

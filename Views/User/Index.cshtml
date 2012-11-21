@@ -1,0 +1,125 @@
+﻿@model IEnumerable<OA_CRM.Models.ADM_USER>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>用户列表</title>
+    <link href="@Url.Content("~/Content/style.css?v=1")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/skin.css?v=1")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="17" valign="top" background="/Content/images/mail_leftbg.gif">
+                <img src="/Content/images/left-top-right.gif" width="17" height="29" />
+            </td>
+            <td valign="top" background="/Content/images/content-bg.gif">
+                <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
+                    id="table2">
+                    <tr>
+                        <td height="31">
+                            <div class="tabTitle">
+                                @Html.ActionLink("新加用户", "Add")</div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="16" valign="top" background="/Content/images/mail_rightbg.gif">
+                <img src="/Content/images/nav-right-bg.gif" width="16" height="29" />
+            </td>
+        </tr>
+    </table>
+    <div style="margin: 0px 8px 0px 7px;">
+        <div style="border: solid 1px #849DBD">
+            <table class="tb_blue">
+                <tr>
+                    <th>
+                        USERNAME
+                    </th>
+                    <th>
+                        PASSWORD
+                    </th>
+                    <th>
+                        STATE
+                    </th>
+                    <th>
+                        LOGIN_TIME
+                    </th>
+                    <th>
+                        REAL_NAME
+                    </th>
+                    <th>
+                        SEX
+                    </th>
+                    <th>
+                        BIRTH
+                    </th>
+                    <th>
+                        ADDRESS
+                    </th>
+                    <th>
+                        TEL
+                    </th>
+                    <th>
+                        MOBILE
+                    </th>
+                    <th>
+                        POSTCODE
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.USERNAME
+                        </td>
+                        <td>
+                            @item.PASSWORD
+                        </td>
+                        <td>
+                            @String.Format("{0:F}", item.STATE)
+                        </td>
+                        <td>
+                            @String.Format("{0:g}", item.LOGIN_TIME)
+                        </td>
+                        <td>
+                            @item.REAL_NAME
+                        </td>
+                        <td>
+                            @String.Format("{0:F}", item.SEX)
+                        </td>
+                        <td>
+                            @String.Format("{0:g}", item.BIRTH)
+                        </td>
+                        <td>
+                            @item.ADDRESS
+                        </td>
+                        <td>
+                            @item.TEL
+                        </td>
+                        <td>
+                            @String.Format("{0:F}", item.MOBILE)
+                        </td>
+                        <td>
+                            @String.Format("{0:F}", item.POSTCODE)
+                        </td>
+                        <td>
+                            @Html.ActionLink("编辑", "Edit", new { id = item.USER_ID }) |
+                            @Html.ActionLink("详情", "Details", new { id = item.USER_ID })
+                        </td>
+                    </tr>
+            }
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+

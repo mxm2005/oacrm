@@ -1,0 +1,83 @@
+﻿@model OA_CRM.Models.CUSTOMER
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <legend>添加客户信息</legend>
+                <div class="editor-label">
+                    客户名：
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CUSTOMER_NAME)<span style="color: #f00;"> *</span>
+                    @Html.ValidationMessageFor(model => model.CUSTOMER_NAME, "客户名不能为空")
+                </div>
+                <div class="editor-label">
+                    公司名称：
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CORPERATION)
+                    @Html.ValidationMessageFor(model => model.CORPERATION)
+                </div>
+                <div class="editor-label">
+                    联系人：
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.LINKMAN)
+                    @Html.ValidationMessageFor(model => model.LINKMAN)
+                </div>
+                <div class="editor-label">
+                    联系电话：
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.TEL)
+                    @Html.ValidationMessageFor(model => model.TEL)
+                </div>
+                <div class="editor-label">
+                    备注：
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.REMARK)
+                    @Html.ValidationMessageFor(model => model.REMARK)
+                </div>
+                <div class="editor-label">
+                    地址：
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ADDRESS)
+                    @Html.ValidationMessageFor(model => model.ADDRESS)
+                </div>
+                <div class="editor-label">
+                    EMail：
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.EMAIL)
+                    @Html.ValidationMessageFor(model => model.EMAIL)
+                </div>
+                <div class="editor-label">
+                    传真：
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.FAX)
+                    @Html.ValidationMessageFor(model => model.FAX)
+                </div>
+                <p>
+                    <input type="submit" value="保存" />
+                </p>
+            </fieldset>
+        }
+        <div>
+            @Html.ActionLink("Back to List", "CusList")
+        </div>
+    </div>
+</body>
+</html>

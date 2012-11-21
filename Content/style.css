@@ -1,0 +1,27 @@
+body
+{
+	text-align:center;
+	margin:0px 0px;
+	font-size:smaller;
+	background:#EEF2FB;
+}
+p,body,div,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,li,input,span{margin:0px;padding:0px;}
+ul li{list-style:none;}
+a
+{
+	color:#034EFA;
+	text-decoration:none;
+}
+.PageMain{padding:0px 10px;}
+.pageTitle{font-size: 16px; height: 26px; line-height: 26px; text-align: left;}
+.tabTitle{height:26px;line-height: 26px; text-align: left;background:url(/Content/images/top_bt.jpg) no-repeat 0px -3px;padding:0px 3px;width:80px;text-align:center;}
+/*table*/
+.tb_blue{border:none;border-collapse:collapse;line-height:26px;width:100%;}
+.tb_blue th{border-right:solid 1px #849DBD;border-bottom:solid 1px #849DBD;border-collapse:collapse;line-height:24px;padding:0px 3px;background:#E7F0FA;}
+.tb_blue td{border-right:solid 1px #CFDDEE;border-bottom:solid 1px #CFDDEE;border-collapse:collapse;line-height:24px;padding:0px 3px;}
+
+.tb_detail{border:none;border-collapse:collapse;line-height:26px;width:600px;}
+.tb_detail td{border:solid 1px #849DBD;border-collapse:collapse;line-height:24px;padding:0px 3px;}
+.td_title{background:#EEF2FB;text-align:right;}
+.td_content{text-align:left;}
+

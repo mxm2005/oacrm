@@ -1,0 +1,113 @@
+﻿@model OA_CRM.Models.CUSTOMER
+@{    
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>客户资料详情</title>
+    <link href="@Url.Content("~/Content/style.css?v=1")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="PageMain" style="width:600px;">
+    <div class="pageTitle">
+        客户详细信息
+    </div>
+    <table class="tb_detail">
+        <tr>
+            <td class="td_title" style="width:100px;">
+                客户名称：
+            </td>
+            <td class="td_content">
+            @Html.DisplayFor(model => model.CUSTOMER_NAME)
+            </td>
+        </tr>
+        <tr>
+            <td class="td_title">
+                公司名称：
+            </td>
+            <td class="td_content">
+               @Html.DisplayFor(model => model.CORPERATION)
+            </td>
+        </tr>
+        <tr>
+            <td class="td_title">
+                联系人：
+            </td>
+            <td class="td_content">
+                @Html.DisplayFor(model => model.LINKMAN)
+            </td>
+        </tr>
+        <tr>
+            <td class="td_title">
+                电话：
+            </td>
+            <td class="td_content">
+                @Html.DisplayFor(model => model.TEL)
+            </td>
+        </tr>
+        <tr>
+            <td class="td_title">
+                传真：
+            </td>
+            <td class="td_content">
+                @Html.DisplayFor(model => model.FAX)
+            </td>
+        </tr>
+        <tr>
+            <td class="td_title">
+                地址：
+            </td>
+            <td class="td_content">
+                @Html.DisplayFor(model => model.ADDRESS)
+            </td>
+        </tr>
+        <tr>
+            <td class="td_title">
+                邮编：
+            </td>
+            <td class="td_content">
+                @Html.DisplayFor(model => model.POSTCODE)
+            </td>
+        </tr>
+        <tr>
+            <td class="td_title">
+                邮箱：
+            </td>
+            <td class="td_content">
+                @Html.DisplayFor(model => model.EMAIL)
+            </td>
+        </tr>
+        <tr>
+            <td class="td_title">
+                网址：
+            </td>
+            <td class="td_content">
+                @Html.DisplayFor(model => model.WEBURL)
+            </td>
+        </tr>
+        <tr>
+            <td class="td_title">
+                客服人员：
+            </td>
+            <td class="td_content">
+                @Html.DisplayFor(model => model.SERVICE_USER)
+            </td>
+        </tr>
+        <tr>
+            <td class="td_title">
+                备注：
+            </td>
+            <td class="td_content">
+                @Html.DisplayFor(model => model.REMARK)
+            </td>
+        </tr>
+    </table>
+    <div>
+        <p style="margin-top:10px;">
+            @Html.ActionLink("编辑", "Edit", new { id = Model.CUSTOMER_ID }) |
+            @Html.ActionLink("返回产品列表", "CusList")
+        </p>
+    </div></div>
+</body>
+</html>

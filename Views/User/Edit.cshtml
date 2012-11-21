@@ -1,0 +1,98 @@
+﻿@model OA_CRM.Models.ADM_USER
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <legend>ADM_USER</legend>
+                @*@Html.HiddenFor(model => model.USER_ID)*@
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.USERNAME)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.USERNAME)
+                    @Html.ValidationMessageFor(model => model.USERNAME)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.STATE)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.STATE)
+                    @Html.ValidationMessageFor(model => model.STATE)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LOGIN_TIME)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.LOGIN_TIME)
+                    @Html.ValidationMessageFor(model => model.LOGIN_TIME)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.REAL_NAME)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.REAL_NAME)
+                    @Html.ValidationMessageFor(model => model.REAL_NAME)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SEX)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.SEX)
+                    @Html.ValidationMessageFor(model => model.SEX)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BIRTH)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BIRTH)
+                    @Html.ValidationMessageFor(model => model.BIRTH)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ADDRESS)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ADDRESS)
+                    @Html.ValidationMessageFor(model => model.ADDRESS)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TEL)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.TEL)
+                    @Html.ValidationMessageFor(model => model.TEL)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MOBILE)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.MOBILE)
+                    @Html.ValidationMessageFor(model => model.MOBILE)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.POSTCODE)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.POSTCODE)
+                    @Html.ValidationMessageFor(model => model.POSTCODE)
+                </div>
+                <p>
+                    <input type="submit" value="Save" />
+                </p>
+            </fieldset>
+        }
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</body>
+</html>

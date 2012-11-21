@@ -1,0 +1,56 @@
+﻿@model OA_CRM.Models.ADM_USER
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Details</title>
+</head>
+<body>
+    <fieldset>
+        <legend>ADM_USER</legend>
+    
+        <div class="display-label">USERNAME</div>
+        <div class="display-field">@Model.USERNAME</div>
+    
+        <div class="display-label">PASSWORD</div>
+        <div class="display-field">@Model.PASSWORD</div>
+    
+        <div class="display-label">STATE</div>
+        <div class="display-field">@String.Format("{0:F}", Model.STATE)</div>
+    
+        <div class="display-label">LOGIN_TIME</div>
+        <div class="display-field">@String.Format("{0:g}", Model.LOGIN_TIME)</div>
+    
+        <div class="display-label">REAL_NAME</div>
+        <div class="display-field">@Model.REAL_NAME</div>
+    
+        <div class="display-label">SEX</div>
+        <div class="display-field">@String.Format("{0:F}", Model.SEX)</div>
+    
+        <div class="display-label">BIRTH</div>
+        <div class="display-field">@String.Format("{0:g}", Model.BIRTH)</div>
+    
+        <div class="display-label">ADDRESS</div>
+        <div class="display-field">@Model.ADDRESS</div>
+    
+        <div class="display-label">TEL</div>
+        <div class="display-field">@Model.TEL</div>
+    
+        <div class="display-label">MOBILE</div>
+        <div class="display-field">@String.Format("{0:F}", Model.MOBILE)</div>
+    
+        <div class="display-label">POSTCODE</div>
+        <div class="display-field">@String.Format("{0:F}", Model.POSTCODE)</div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.USER_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
+

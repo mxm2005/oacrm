@@ -1,0 +1,686 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MYCRMModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MYCRMModelStoreContainer">
+          <EntitySet Name="ADM_USER" EntityType="MYCRMModel.Store.ADM_USER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ATTACHMENT" EntityType="MYCRMModel.Store.ATTACHMENT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CONTACT_RECORD" EntityType="MYCRMModel.Store.CONTACT_RECORD" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CUS_OTHER_LINKMAN" EntityType="MYCRMModel.Store.CUS_OTHER_LINKMAN" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CUSTOMER" EntityType="MYCRMModel.Store.CUSTOMER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DEPT" EntityType="MYCRMModel.Store.DEPT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GRANT_MENU" EntityType="MYCRMModel.Store.GRANT_MENU" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MESSAGE_HISTORY" EntityType="MYCRMModel.Store.MESSAGE_HISTORY" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MSG_RECEIVE_LIST" EntityType="MYCRMModel.Store.MSG_RECEIVE_LIST" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="REF_ROLE_GRANT" EntityType="MYCRMModel.Store.REF_ROLE_GRANT" store:Type="Tables" store:Schema="dbo" store:Name="REF_ROLE_GRANT">
+            <DefiningQuery>SELECT 
+      [REF_ROLE_GRANT].[ROLE_ID] AS [ROLE_ID], 
+      [REF_ROLE_GRANT].[GRANT_ID] AS [GRANT_ID]
+      FROM [dbo].[REF_ROLE_GRANT] AS [REF_ROLE_GRANT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="REF_USER_DEPT" EntityType="MYCRMModel.Store.REF_USER_DEPT" store:Type="Tables" store:Schema="dbo" store:Name="REF_USER_DEPT">
+            <DefiningQuery>SELECT 
+      [REF_USER_DEPT].[USER_ID] AS [USER_ID], 
+      [REF_USER_DEPT].[DEPT_ID] AS [DEPT_ID]
+      FROM [dbo].[REF_USER_DEPT] AS [REF_USER_DEPT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="REF_USER_ROLE" EntityType="MYCRMModel.Store.REF_USER_ROLE" store:Type="Tables" store:Schema="dbo" store:Name="REF_USER_ROLE">
+            <DefiningQuery>SELECT 
+      [REF_USER_ROLE].[USER_ID] AS [USER_ID], 
+      [REF_USER_ROLE].[ROLE_ID] AS [ROLE_ID]
+      FROM [dbo].[REF_USER_ROLE] AS [REF_USER_ROLE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ROLE" EntityType="MYCRMModel.Store.ROLE" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CONTACT__REFERENCE_ADM_USER" Association="MYCRMModel.Store.FK_CONTACT__REFERENCE_ADM_USER">
+            <End Role="ADM_USER" EntitySet="ADM_USER" />
+            <End Role="CONTACT_RECORD" EntitySet="CONTACT_RECORD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTACT__REFERENCE_CUSTOMER" Association="MYCRMModel.Store.FK_CONTACT__REFERENCE_CUSTOMER">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="CONTACT_RECORD" EntitySet="CONTACT_RECORD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUS_OTHE_REFERENCE_CUSTOMER" Association="MYCRMModel.Store.FK_CUS_OTHE_REFERENCE_CUSTOMER">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="CUS_OTHER_LINKMAN" EntitySet="CUS_OTHER_LINKMAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MSG_RECE_REFERENCE_MESSAGE_" Association="MYCRMModel.Store.FK_MSG_RECE_REFERENCE_MESSAGE_">
+            <End Role="MESSAGE_HISTORY" EntitySet="MESSAGE_HISTORY" />
+            <End Role="MSG_RECEIVE_LIST" EntitySet="MSG_RECEIVE_LIST" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ADM_USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="20" />
+          <Property Name="STATE" Type="numeric" Precision="2" />
+          <Property Name="LOGIN_TIME" Type="datetime" />
+          <Property Name="REAL_NAME" Type="varchar" MaxLength="20" />
+          <Property Name="SEX" Type="numeric" Precision="1" />
+          <Property Name="BIRTH" Type="datetime" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="255" />
+          <Property Name="TEL" Type="varchar" MaxLength="50" />
+          <Property Name="MOBILE" Type="numeric" Precision="11" />
+          <Property Name="POSTCODE" Type="numeric" Precision="8" />
+        </EntityType>
+        <EntityType Name="ATTACHMENT">
+          <Key>
+            <PropertyRef Name="ATTACH_ID" />
+          </Key>
+          <Property Name="ATTACH_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OWNER_ID" Type="int" Nullable="false" />
+          <Property Name="OWNER_TYPE" Type="int" Nullable="false" />
+          <Property Name="PATH" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="ATTACH_TYPE" Type="int" />
+        </EntityType>
+        <EntityType Name="CONTACT_RECORD">
+          <Key>
+            <PropertyRef Name="CR_ID" />
+          </Key>
+          <Property Name="CR_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="400" />
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="ADM_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CONTACT_CONTENT" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="CONTACT_DATE" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="datetime" Nullable="false" />
+          <Property Name="CONTACT_TYPE" Type="int" Nullable="false" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="CUS_OTHER_LINKMAN">
+          <Key>
+            <PropertyRef Name="LINKMAN_ID" />
+          </Key>
+          <Property Name="LINKMAN_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="TEL" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="256" />
+          <Property Name="FAX" Type="nvarchar" MaxLength="256" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="256" />
+          <Property Name="QQ" Type="int" />
+          <Property Name="CUSTOMER_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LINKMAN" Type="varchar" MaxLength="20" />
+          <Property Name="TEL" Type="varchar" MaxLength="50" />
+          <Property Name="MOBILE" Type="numeric" Precision="11" />
+          <Property Name="SEX" Type="numeric" Precision="1" />
+          <Property Name="PROVINCE" Type="varchar" MaxLength="50" />
+          <Property Name="CITY" Type="varchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="255" />
+          <Property Name="FAX" Type="varchar" MaxLength="50" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="255" />
+          <Property Name="POSTCODE" Type="numeric" Precision="8" />
+          <Property Name="CORPERATION" Type="varchar" MaxLength="250" />
+          <Property Name="QQ" Type="int" />
+          <Property Name="WEBURL" Type="varchar" MaxLength="255" />
+          <Property Name="LEAVEL" Type="int" />
+          <Property Name="CUSTOM_TYPE" Type="numeric" Precision="2" />
+          <Property Name="USER_FROM" Type="numeric" Precision="2" />
+          <Property Name="USER_STATE" Type="numeric" Precision="2" />
+          <Property Name="UPDATE_TIME" Type="datetime" />
+          <Property Name="CREATE_TIME" Type="datetime" />
+          <Property Name="REMARK" Type="varchar" MaxLength="500" />
+          <Property Name="SERVICE_USER" Type="int" />
+          <Property Name="CUSTOMER_NAME" Type="nvarchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="DEPT">
+          <Key>
+            <PropertyRef Name="DEPT_ID" />
+          </Key>
+          <Property Name="DEPT_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DEPT_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="PARENT_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="GRANT_MENU">
+          <Key>
+            <PropertyRef Name="GRANT_ID" />
+          </Key>
+          <Property Name="GRANT_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GRANT_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="GRANT_DESC" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MESSAGE_HISTORY">
+          <Key>
+            <PropertyRef Name="MSG_HIS_ID" />
+          </Key>
+          <Property Name="MSG_HIS_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="256" />
+          <Property Name="CONTENT" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="SEND_USER" Type="int" Nullable="false" />
+          <Property Name="SEND_TIME" Type="datetime" Nullable="false" />
+          <Property Name="ATTACHMENT_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="MSG_RECEIVE_LIST">
+          <Key>
+            <PropertyRef Name="RECEIVE_ID" />
+          </Key>
+          <Property Name="RECEIVE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MSG_HIS_ID" Type="int" Nullable="false" />
+          <Property Name="ADM_USER_ID" Type="int" />
+          <Property Name="IS_READED" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'MYCRM.dbo.REF_ROLE_GRANT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="REF_ROLE_GRANT">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+            <PropertyRef Name="GRANT_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GRANT_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'MYCRM.dbo.REF_USER_DEPT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="REF_USER_DEPT">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="DEPT_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DEPT_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'MYCRM.dbo.REF_USER_ROLE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="REF_USER_ROLE">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_NAME" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_CONTACT__REFERENCE_ADM_USER">
+          <End Role="ADM_USER" Type="MYCRMModel.Store.ADM_USER" Multiplicity="1" />
+          <End Role="CONTACT_RECORD" Type="MYCRMModel.Store.CONTACT_RECORD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADM_USER">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="CONTACT_RECORD">
+              <PropertyRef Name="ADM_USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTACT__REFERENCE_CUSTOMER">
+          <End Role="CUSTOMER" Type="MYCRMModel.Store.CUSTOMER" Multiplicity="1" />
+          <End Role="CONTACT_RECORD" Type="MYCRMModel.Store.CONTACT_RECORD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="CONTACT_RECORD">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUS_OTHE_REFERENCE_CUSTOMER">
+          <End Role="CUSTOMER" Type="MYCRMModel.Store.CUSTOMER" Multiplicity="0..1" />
+          <End Role="CUS_OTHER_LINKMAN" Type="MYCRMModel.Store.CUS_OTHER_LINKMAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="CUS_OTHER_LINKMAN">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MSG_RECE_REFERENCE_MESSAGE_">
+          <End Role="MESSAGE_HISTORY" Type="MYCRMModel.Store.MESSAGE_HISTORY" Multiplicity="1" />
+          <End Role="MSG_RECEIVE_LIST" Type="MYCRMModel.Store.MSG_RECEIVE_LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MESSAGE_HISTORY">
+              <PropertyRef Name="MSG_HIS_ID" />
+            </Principal>
+            <Dependent Role="MSG_RECEIVE_LIST">
+              <PropertyRef Name="MSG_HIS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MYCRMModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MYCRMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADM_USER" EntityType="MYCRMModel.ADM_USER" />
+          <EntitySet Name="CUSTOMER" EntityType="MYCRMModel.CUSTOMER" />
+          <EntitySet Name="DEPT" EntityType="MYCRMModel.DEPT" />
+          <EntitySet Name="GRANT_MENU" EntityType="MYCRMModel.GRANT_MENU" />
+          <EntitySet Name="REF_ROLE_GRANT" EntityType="MYCRMModel.REF_ROLE_GRANT" />
+          <EntitySet Name="REF_USER_DEPT" EntityType="MYCRMModel.REF_USER_DEPT" />
+          <EntitySet Name="REF_USER_ROLE" EntityType="MYCRMModel.REF_USER_ROLE" />
+          <EntitySet Name="ROLE" EntityType="MYCRMModel.ROLE" />
+          <EntitySet Name="ATTACHMENT" EntityType="MYCRMModel.ATTACHMENT" />
+          <EntitySet Name="CONTACT_RECORD" EntityType="MYCRMModel.CONTACT_RECORD" />
+          <EntitySet Name="CUS_OTHER_LINKMAN" EntityType="MYCRMModel.CUS_OTHER_LINKMAN" />
+          <EntitySet Name="MESSAGE_HISTORY" EntityType="MYCRMModel.MESSAGE_HISTORY" />
+          <EntitySet Name="MSG_RECEIVE_LIST" EntityType="MYCRMModel.MSG_RECEIVE_LIST" />
+          <AssociationSet Name="FK_CONTACT__REFERENCE_ADM_USER" Association="MYCRMModel.FK_CONTACT__REFERENCE_ADM_USER">
+            <End Role="ADM_USER" EntitySet="ADM_USER" />
+            <End Role="CONTACT_RECORD" EntitySet="CONTACT_RECORD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTACT__REFERENCE_CUSTOMER" Association="MYCRMModel.FK_CONTACT__REFERENCE_CUSTOMER">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="CONTACT_RECORD" EntitySet="CONTACT_RECORD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUS_OTHE_REFERENCE_CUSTOMER" Association="MYCRMModel.FK_CUS_OTHE_REFERENCE_CUSTOMER">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="CUS_OTHER_LINKMAN" EntitySet="CUS_OTHER_LINKMAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MSG_RECE_REFERENCE_MESSAGE_" Association="MYCRMModel.FK_MSG_RECE_REFERENCE_MESSAGE_">
+            <End Role="MESSAGE_HISTORY" EntitySet="MESSAGE_HISTORY" />
+            <End Role="MSG_RECEIVE_LIST" EntitySet="MSG_RECEIVE_LIST" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ADM_USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="STATE" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="LOGIN_TIME" Type="DateTime" />
+          <Property Name="REAL_NAME" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="SEX" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="BIRTH" Type="DateTime" />
+          <Property Name="ADDRESS" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="TEL" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MOBILE" Type="Decimal" Precision="11" Scale="0" />
+          <Property Name="POSTCODE" Type="Decimal" Precision="8" Scale="0" />
+          <NavigationProperty Name="CONTACT_RECORD" Relationship="MYCRMModel.FK_CONTACT__REFERENCE_ADM_USER" FromRole="ADM_USER" ToRole="CONTACT_RECORD" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="LINKMAN" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="TEL" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MOBILE" Type="Decimal" Precision="11" Scale="0" />
+          <Property Name="SEX" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="PROVINCE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CITY" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="FAX" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="POSTCODE" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="CORPERATION" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="QQ" Type="Int32" />
+          <Property Name="WEBURL" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="LEAVEL" Type="Int32" />
+          <Property Name="CUSTOM_TYPE" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="USER_FROM" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="USER_STATE" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="UPDATE_TIME" Type="DateTime" />
+          <Property Name="CREATE_TIME" Type="DateTime" />
+          <Property Name="REMARK" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="SERVICE_USER" Type="Int32" />
+          <Property Type="String" Name="CUSTOMER_NAME" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CONTACT_RECORD" Relationship="MYCRMModel.FK_CONTACT__REFERENCE_CUSTOMER" FromRole="CUSTOMER" ToRole="CONTACT_RECORD" />
+          <NavigationProperty Name="CUS_OTHER_LINKMAN" Relationship="MYCRMModel.FK_CUS_OTHE_REFERENCE_CUSTOMER" FromRole="CUSTOMER" ToRole="CUS_OTHER_LINKMAN" />
+        </EntityType>
+        <EntityType Name="DEPT">
+          <Key>
+            <PropertyRef Name="DEPT_ID" />
+          </Key>
+          <Property Name="DEPT_ID" Type="Int32" Nullable="false" />
+          <Property Name="DEPT_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PARENT_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GRANT_MENU">
+          <Key>
+            <PropertyRef Name="GRANT_ID" />
+          </Key>
+          <Property Name="GRANT_ID" Type="Int32" Nullable="false" />
+          <Property Name="GRANT_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="GRANT_DESC" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="REF_ROLE_GRANT">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+            <PropertyRef Name="GRANT_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="GRANT_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REF_USER_DEPT">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="DEPT_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="DEPT_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REF_USER_ROLE">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="ROLE_NAME" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ATTACHMENT">
+          <Key>
+            <PropertyRef Name="ATTACH_ID" />
+          </Key>
+          <Property Type="Int32" Name="ATTACH_ID" Nullable="false" />
+          <Property Type="Int32" Name="OWNER_ID" Nullable="false" />
+          <Property Type="Int32" Name="OWNER_TYPE" Nullable="false" />
+          <Property Type="String" Name="PATH" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ATTACH_TYPE" />
+        </EntityType>
+        <EntityType Name="CONTACT_RECORD">
+          <Key>
+            <PropertyRef Name="CR_ID" />
+          </Key>
+          <Property Type="Int32" Name="CR_ID" Nullable="false" />
+          <Property Type="String" Name="TITLE" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CUSTOMER_ID" Nullable="false" />
+          <Property Type="Int32" Name="ADM_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CONTACT_CONTENT" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CONTACT_DATE" Nullable="false" />
+          <Property Type="DateTime" Name="CREATE_DATE" Nullable="false" />
+          <Property Type="Int32" Name="CONTACT_TYPE" Nullable="false" />
+          <Property Type="String" Name="REMARK" MaxLength="400" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ADM_USER" Relationship="MYCRMModel.FK_CONTACT__REFERENCE_ADM_USER" FromRole="CONTACT_RECORD" ToRole="ADM_USER" />
+          <NavigationProperty Name="CUSTOMER" Relationship="MYCRMModel.FK_CONTACT__REFERENCE_CUSTOMER" FromRole="CONTACT_RECORD" ToRole="CUSTOMER" />
+        </EntityType>
+        <EntityType Name="CUS_OTHER_LINKMAN">
+          <Key>
+            <PropertyRef Name="LINKMAN_ID" />
+          </Key>
+          <Property Type="Int32" Name="LINKMAN_ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TEL" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ADDRESS" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FAX" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EMAIL" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="QQ" />
+          <Property Type="Int32" Name="CUSTOMER_ID" />
+          <NavigationProperty Name="CUSTOMER" Relationship="MYCRMModel.FK_CUS_OTHE_REFERENCE_CUSTOMER" FromRole="CUS_OTHER_LINKMAN" ToRole="CUSTOMER" />
+        </EntityType>
+        <EntityType Name="MESSAGE_HISTORY">
+          <Key>
+            <PropertyRef Name="MSG_HIS_ID" />
+          </Key>
+          <Property Type="Int32" Name="MSG_HIS_ID" Nullable="false" />
+          <Property Type="String" Name="TITLE" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CONTENT" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SEND_USER" Nullable="false" />
+          <Property Type="DateTime" Name="SEND_TIME" Nullable="false" />
+          <Property Type="Int32" Name="ATTACHMENT_ID" />
+          <NavigationProperty Name="MSG_RECEIVE_LIST" Relationship="MYCRMModel.FK_MSG_RECE_REFERENCE_MESSAGE_" FromRole="MESSAGE_HISTORY" ToRole="MSG_RECEIVE_LIST" />
+        </EntityType>
+        <EntityType Name="MSG_RECEIVE_LIST">
+          <Key>
+            <PropertyRef Name="RECEIVE_ID" />
+          </Key>
+          <Property Type="Int32" Name="RECEIVE_ID" Nullable="false" />
+          <Property Type="Int32" Name="MSG_HIS_ID" Nullable="false" />
+          <Property Type="Int32" Name="ADM_USER_ID" />
+          <Property Type="Int32" Name="IS_READED" />
+          <NavigationProperty Name="MESSAGE_HISTORY" Relationship="MYCRMModel.FK_MSG_RECE_REFERENCE_MESSAGE_" FromRole="MSG_RECEIVE_LIST" ToRole="MESSAGE_HISTORY" />
+        </EntityType>
+        <Association Name="FK_CONTACT__REFERENCE_ADM_USER">
+          <End Type="MYCRMModel.ADM_USER" Role="ADM_USER" Multiplicity="1" />
+          <End Type="MYCRMModel.CONTACT_RECORD" Role="CONTACT_RECORD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADM_USER">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="CONTACT_RECORD">
+              <PropertyRef Name="ADM_USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTACT__REFERENCE_CUSTOMER">
+          <End Type="MYCRMModel.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
+          <End Type="MYCRMModel.CONTACT_RECORD" Role="CONTACT_RECORD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="CONTACT_RECORD">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUS_OTHE_REFERENCE_CUSTOMER">
+          <End Type="MYCRMModel.CUSTOMER" Role="CUSTOMER" Multiplicity="0..1" />
+          <End Type="MYCRMModel.CUS_OTHER_LINKMAN" Role="CUS_OTHER_LINKMAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="CUS_OTHER_LINKMAN">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MSG_RECE_REFERENCE_MESSAGE_">
+          <End Type="MYCRMModel.MESSAGE_HISTORY" Role="MESSAGE_HISTORY" Multiplicity="1" />
+          <End Type="MYCRMModel.MSG_RECEIVE_LIST" Role="MSG_RECEIVE_LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MESSAGE_HISTORY">
+              <PropertyRef Name="MSG_HIS_ID" />
+            </Principal>
+            <Dependent Role="MSG_RECEIVE_LIST">
+              <PropertyRef Name="MSG_HIS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MYCRMModelStoreContainer" CdmEntityContainer="MYCRMEntities">
+          <EntitySetMapping Name="ADM_USER"><EntityTypeMapping TypeName="MYCRMModel.ADM_USER"><MappingFragment StoreEntitySet="ADM_USER">
+            <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+            <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+            <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+            <ScalarProperty Name="STATE" ColumnName="STATE" />
+            <ScalarProperty Name="LOGIN_TIME" ColumnName="LOGIN_TIME" />
+            <ScalarProperty Name="REAL_NAME" ColumnName="REAL_NAME" />
+            <ScalarProperty Name="SEX" ColumnName="SEX" />
+            <ScalarProperty Name="BIRTH" ColumnName="BIRTH" />
+            <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+            <ScalarProperty Name="TEL" ColumnName="TEL" />
+            <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+            <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMER"><EntityTypeMapping TypeName="MYCRMModel.CUSTOMER"><MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="CUSTOMER_NAME" ColumnName="CUSTOMER_NAME" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+            <ScalarProperty Name="LINKMAN" ColumnName="LINKMAN" />
+            <ScalarProperty Name="TEL" ColumnName="TEL" />
+            <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+            <ScalarProperty Name="SEX" ColumnName="SEX" />
+            <ScalarProperty Name="PROVINCE" ColumnName="PROVINCE" />
+            <ScalarProperty Name="CITY" ColumnName="CITY" />
+            <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+            <ScalarProperty Name="FAX" ColumnName="FAX" />
+            <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+            <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
+            <ScalarProperty Name="CORPERATION" ColumnName="CORPERATION" />
+            <ScalarProperty Name="QQ" ColumnName="QQ" />
+            <ScalarProperty Name="WEBURL" ColumnName="WEBURL" />
+            <ScalarProperty Name="LEAVEL" ColumnName="LEAVEL" />
+            <ScalarProperty Name="CUSTOM_TYPE" ColumnName="CUSTOM_TYPE" />
+            <ScalarProperty Name="USER_FROM" ColumnName="USER_FROM" />
+            <ScalarProperty Name="USER_STATE" ColumnName="USER_STATE" />
+            <ScalarProperty Name="UPDATE_TIME" ColumnName="UPDATE_TIME" />
+            <ScalarProperty Name="CREATE_TIME" ColumnName="CREATE_TIME" />
+            <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+            <ScalarProperty Name="SERVICE_USER" ColumnName="SERVICE_USER" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="DEPT"><EntityTypeMapping TypeName="MYCRMModel.DEPT"><MappingFragment StoreEntitySet="DEPT">
+            <ScalarProperty Name="DEPT_ID" ColumnName="DEPT_ID" />
+            <ScalarProperty Name="DEPT_NAME" ColumnName="DEPT_NAME" />
+            <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="GRANT_MENU"><EntityTypeMapping TypeName="MYCRMModel.GRANT_MENU"><MappingFragment StoreEntitySet="GRANT_MENU">
+            <ScalarProperty Name="GRANT_ID" ColumnName="GRANT_ID" />
+            <ScalarProperty Name="GRANT_NAME" ColumnName="GRANT_NAME" />
+            <ScalarProperty Name="GRANT_DESC" ColumnName="GRANT_DESC" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="REF_ROLE_GRANT"><EntityTypeMapping TypeName="MYCRMModel.REF_ROLE_GRANT"><MappingFragment StoreEntitySet="REF_ROLE_GRANT">
+            <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+            <ScalarProperty Name="GRANT_ID" ColumnName="GRANT_ID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="REF_USER_DEPT"><EntityTypeMapping TypeName="MYCRMModel.REF_USER_DEPT"><MappingFragment StoreEntitySet="REF_USER_DEPT">
+            <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+            <ScalarProperty Name="DEPT_ID" ColumnName="DEPT_ID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="REF_USER_ROLE"><EntityTypeMapping TypeName="MYCRMModel.REF_USER_ROLE"><MappingFragment StoreEntitySet="REF_USER_ROLE">
+            <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+            <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ROLE"><EntityTypeMapping TypeName="MYCRMModel.ROLE"><MappingFragment StoreEntitySet="ROLE">
+            <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+            <ScalarProperty Name="ROLE_NAME" ColumnName="ROLE_NAME" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ATTACHMENT">
+            <EntityTypeMapping TypeName="MYCRMModel.ATTACHMENT">
+              <MappingFragment StoreEntitySet="ATTACHMENT">
+                <ScalarProperty Name="ATTACH_TYPE" ColumnName="ATTACH_TYPE" />
+                <ScalarProperty Name="PATH" ColumnName="PATH" />
+                <ScalarProperty Name="OWNER_TYPE" ColumnName="OWNER_TYPE" />
+                <ScalarProperty Name="OWNER_ID" ColumnName="OWNER_ID" />
+                <ScalarProperty Name="ATTACH_ID" ColumnName="ATTACH_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTACT_RECORD">
+            <EntityTypeMapping TypeName="MYCRMModel.CONTACT_RECORD">
+              <MappingFragment StoreEntitySet="CONTACT_RECORD">
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="CONTACT_TYPE" ColumnName="CONTACT_TYPE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="CONTACT_DATE" ColumnName="CONTACT_DATE" />
+                <ScalarProperty Name="CONTACT_CONTENT" ColumnName="CONTACT_CONTENT" />
+                <ScalarProperty Name="ADM_USER_ID" ColumnName="ADM_USER_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUS_OTHER_LINKMAN">
+            <EntityTypeMapping TypeName="MYCRMModel.CUS_OTHER_LINKMAN">
+              <MappingFragment StoreEntitySet="CUS_OTHER_LINKMAN">
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="TEL" ColumnName="TEL" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="LINKMAN_ID" ColumnName="LINKMAN_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MESSAGE_HISTORY">
+            <EntityTypeMapping TypeName="MYCRMModel.MESSAGE_HISTORY">
+              <MappingFragment StoreEntitySet="MESSAGE_HISTORY">
+                <ScalarProperty Name="ATTACHMENT_ID" ColumnName="ATTACHMENT_ID" />
+                <ScalarProperty Name="SEND_TIME" ColumnName="SEND_TIME" />
+                <ScalarProperty Name="SEND_USER" ColumnName="SEND_USER" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="MSG_HIS_ID" ColumnName="MSG_HIS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSG_RECEIVE_LIST">
+            <EntityTypeMapping TypeName="MYCRMModel.MSG_RECEIVE_LIST">
+              <MappingFragment StoreEntitySet="MSG_RECEIVE_LIST">
+                <ScalarProperty Name="IS_READED" ColumnName="IS_READED" />
+                <ScalarProperty Name="ADM_USER_ID" ColumnName="ADM_USER_ID" />
+                <ScalarProperty Name="MSG_HIS_ID" ColumnName="MSG_HIS_ID" />
+                <ScalarProperty Name="RECEIVE_ID" ColumnName="RECEIVE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MYCRM">
+        <EntityTypeShape EntityType="MYCRMModel.ADM_USER" Width="1.5" PointX="0.75" PointY="0.75" Height="2.9711718749999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYCRMModel.CUSTOMER" Width="1.5" PointX="5" PointY="0.75" Height="5.1632291666666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYCRMModel.DEPT" Width="1.5" PointX="9.125" PointY="0.75" Height="1.4535937499999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYCRMModel.GRANT_MENU" Width="1.5" PointX="9.125" PointY="2.5" Height="1.4535937499999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYCRMModel.REF_ROLE_GRANT" Width="1.5" PointX="7.125" PointY="0.75" Height="1.2849739583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYCRMModel.REF_USER_DEPT" Width="1.5" PointX="0.75" PointY="4.125" Height="1.2849739583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYCRMModel.REF_USER_ROLE" Width="1.5" PointX="2.75" PointY="3.875" Height="1.2849739583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYCRMModel.ROLE" Width="1.5" PointX="7.125" PointY="2.375" Height="1.2849739583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYCRMModel.ATTACHMENT" Width="1.5" PointX="2.75" PointY="5.75" Height="1.7908333333333317" />
+        <EntityTypeShape EntityType="MYCRMModel.CONTACT_RECORD" Width="1.5" PointX="2.75" PointY="0.75" Height="2.8025520833333353" />
+        <EntityTypeShape EntityType="MYCRMModel.CUS_OTHER_LINKMAN" Width="1.5" PointX="5" PointY="6.5" Height="2.465312500000004" />
+        <EntityTypeShape EntityType="MYCRMModel.MESSAGE_HISTORY" Width="1.5" PointX="7.125" PointY="4.125" Height="2.1280729166666754" />
+        <EntityTypeShape EntityType="MYCRMModel.MSG_RECEIVE_LIST" Width="1.5" PointX="9.125" PointY="4.25" Height="1.7908333333333388" />
+        <AssociationConnector Association="MYCRMModel.FK_CONTACT__REFERENCE_ADM_USER" >
+          <ConnectorPoint PointX="2.25" PointY="2.1512760416666676" />
+          <ConnectorPoint PointX="2.75" PointY="2.1512760416666676" />
+        </AssociationConnector>
+        <AssociationConnector Association="MYCRMModel.FK_CONTACT__REFERENCE_CUSTOMER" >
+          <ConnectorPoint PointX="5" PointY="2.1512760416666676" />
+          <ConnectorPoint PointX="4.25" PointY="2.1512760416666676" />
+        </AssociationConnector>
+        <AssociationConnector Association="MYCRMModel.FK_CUS_OTHE_REFERENCE_CUSTOMER" >
+          <ConnectorPoint PointX="5.75" PointY="5.9132291666666656" />
+          <ConnectorPoint PointX="5.75" PointY="6.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="MYCRMModel.FK_MSG_RECE_REFERENCE_MESSAGE_" >
+          <ConnectorPoint PointX="8.625" PointY="5.1454166666666694" />
+          <ConnectorPoint PointX="9.125" PointY="5.1454166666666694" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
