@@ -13,3 +13,6 @@ This property cannot be set to a null value.   at System.Data.Objects.DataClasse
    at EmitMapper.ObjectsMapper`2.Map(TFrom from)
    at OA_CRM.Controllers.MsgController.Add(MESSAGE_HISTORY model) in D:\mxmcode\OA_CRM\OA_CRM\Controllers\MsgController.cs:line 48
 HELLO,WORLD
+HELLO,WORLD
+HELLO,WORLD
+HELLO,WORLD
