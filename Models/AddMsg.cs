@@ -9,7 +9,6 @@ namespace OA_CRM.Models{
         public List<MSG_RECEIVE_LIST> receiveLst { get; private set; }
         public AddMsg(MESSAGE_HISTORY msg, List<MSG_RECEIVE_LIST> reveiveLst)
         {
-
             this.msg = msg;
             this.receiveLst = receiveLst;
         }

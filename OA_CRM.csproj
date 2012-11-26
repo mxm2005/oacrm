@@ -37,6 +37,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Com.Mxm.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah, Version=1.0.10617.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="EmitMapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\EmitMapper.dll</HintPath>
@@ -91,6 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Com.Mxm.dll" />
+    <Content Include="bin\Elmah.dll" />
+    <Content Include="bin\Elmah.xml" />
     <Content Include="bin\EmitMapper.dll" />
     <Content Include="bin\WriteTxt.dll" />
     <Content Include="Content\fox.css" />
@@ -238,7 +244,9 @@
     <Content Include="Views\Home\left.aspx" />
     <Content Include="Views\Home\login.aspx" />
     <Content Include="Views\Home\right.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
