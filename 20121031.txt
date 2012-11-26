@@ -11,3 +11,5 @@ An error occurred while updating the entries. See the inner exception for detail
    at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
    at System.Data.Objects.ObjectContext.SaveChanges()
    at OA_CRM.Controllers.UserController.Edit(Int32 id, ADM_USER model) in D:\mxmcode\OA_CRM\OA_CRM\Controllers\UserController.cs:line 94
+
+HELLO
