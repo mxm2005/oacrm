@@ -1,6 +1,8 @@
 ﻿@model OA_CRM.Models.AddMsg
 @{
     Layout = null;
+    
+    
 }
 
 <!DOCTYPE html>
@@ -8,9 +10,12 @@
 <html>
 <head>
     <title>写信</title>
+    <link type="text/css" rel="Stylesheet" href="/Content/style.css" />
+    <link type="text/css" rel="Stylesheet" href="/Content/wbox/wbox-min.css?s" />    
+    <link type="text/css" rel="stylesheet" href="/Content/ztree/zTreeStyle.css" />
 </head>
 <body>
-    <div class="skin1">
+    <div class="skin1" style='text-align:left;'>
         @using (Html.BeginForm())
         {
             @Html.ValidationSummary(false)
@@ -20,8 +25,8 @@
                     收件人：
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.receiveLst)<span style="color:#f00;"> *</span>
-                    @Html.ValidationMessageFor(model => model.receiveLst, "收件人不能为空")
+                    @Html.Editor("reList") <input id="btn_chose" type="button" class="btn2" value="选择收件人" /><span style="color:#f00;"> *</span>
+                    @Html.Hidden("hidReList")
                 </div>
                 <div class="editor-label">
                     标题：
@@ -45,7 +50,7 @@
                     @Html.ValidationMessageFor(model => model.msg.ATTACHMENT_ID)
                 </div>                
                 <p>
-                    <input type="submit" value="保存" />
+                    <input type="submit" class="btn1" value="保 存" />
                 </p>
             </fieldset>
         }
@@ -55,3 +60,45 @@
     </div>
 </body>
 </html>
+<script type="text/javascript" src="/Scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="/Scripts/json2-min.js"></script>
+<script type="text/javascript" src="/Content/wbox/wbox-min.js"></script>
+<script type="text/javascript" src="/Content/ztree/ztree2.6.js"></script>
+<script type="text/javascript">
+    var zTree1;
+    var setting;
+    setting = {
+        checkable: true,
+        checkType: { "Y": 's', "N": 's' }
+    };
+
+    var zNodes = [];
+    function loadData() {
+        $.post("/ajax/GetUsers.ashx", { "dd": new Date() }, function (d) {
+            if (d) {
+                zNodes = JSON.parse(d);
+            }
+        });
+    }
+
+    $(function () {
+        $("#btn_chose").bind("click", function () {
+            $("#btn_chose").wBox({ title: "选择收件人", show: true, html: "<div><ul id='tree' class='tree' style='width:260px;max-width:260px;max-height:300px;min-height:100px; overflow:auto;'></ul><div style='text-align:center;padding:6px 3px;background:#CCC;'><input type='button' class='btn1' value='确 定' onclick='closeBox()' /></div></div>" });
+            zTree1 = $("#tree").zTree(setting, zNodes);            
+        });
+        loadData();
+    });
+    function closeBox() {
+        var nodes = zTree1.getCheckedNodes(true);
+        $(nodes).each(function (i, n) {
+            if (i == 0) {
+                $("#hidReList").val(n.id);
+                $("#reList").val(n.name);
+            } else {
+                $("#hidReList").val($("#hidReList").val() + "," + n.id);
+                $("#reList").val($("#reList").val() + "," + n.name);
+            }
+        });
+        $(".wBox_close").click();
+    }
+</script>

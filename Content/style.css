@@ -25,3 +25,5 @@ a
 .td_title{background:#EEF2FB;text-align:right;}
 .td_content{text-align:left;}
 
+.btn1{border:none;background:url(/Content/images/btn-bg1.gif) no-repeat;width:70px;height:29px;color:#FFF;cursor:pointer;font-weight:bold;}
+.btn2{border:none;background:url(/Content/images/btn-bg2.gif) no-repeat;width:114px;height:22px;color:#FFF;cursor:pointer;font-weight:bold;}

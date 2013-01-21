@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>Index.aspx</title>
+    <title>首 页</title>
     <meta http-equiv="Content-Type" content="text/html;charset=gb2312" />
 </head>
 <frameset rows="64,*"  frameborder="NO" border="0" framespacing="0">

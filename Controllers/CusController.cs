@@ -33,6 +33,11 @@ namespace OA_CRM.Controllers
         public ActionResult Add()
         {
             return View();
+        }
+
+        public ActionResult test()
+        {
+            return View();
         } 
 
         //
