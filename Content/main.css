@@ -1,0 +1,25 @@
+/* comm */
+html,body,div,ul,li,p,img,form{ margin:0; padding:0; border:none; list-style-type:none;}
+body{font-size:14px; font-family:"ËÎÌו"; color:#333;}
+a{text-decoration:none;}
+.clear{clear:both;height:0;font-size:0;}
+.ul-tab{float:left;margin:0; padding:0;}
+.menu-ul{margin:0; padding:0;width:36px;}
+.menu-ul li{margin:0; padding:5px 6px;display:block;height:100px;background:#AAA;line-height:1.5em;width:1.5em;border:solid 1px #33123E;}
+/*head*/
+.head-bar{height:60px;border:solid 1px #33123E;background:url(/Content/images/index_top_bg.jpg);}
+.head-right{display:block;width:300px;float:right;color:#fff;}
+.label-login {text-align:right;margin:10px 5px 0px 0px;}
+.label-login a{color:#fff;font-weight:bold;}
+.tab1{text-align:right;margin:5px;}
+.tab1 span{height:26px;width:60px;font-weight:bold;}
+.tab1 span a{color:#fff;font-weight:bold;}
+/*menu*/
+.menu-left{display:block;width:250px;margin:0;padding:0;height:100%;overflow:auto;border-right:solid 1px #223344;background:#EEF2FB;}
+.menu-bar{width:35px;height:500px;float:left;border:solid 1px #33123E;}
+.menu-tree{width:206px;height:500px;float:right;border:solid 1px #33123E;}
+.menu-tree ul{width: 200px;}
+.menu-foot{width:206px;height:48px;padding:auto 5px;}
+.menu-foot a{display:block;width:100px;height:30px;border:solid 1px #33123E;background:#AAA;float:left;line-height:30px;text-align:center;}
+/*menu tool*/
+.menu-tool{display:block;width:100px;height:36px;line-height:36px;background:#CCC;border:solid 1px #000;text-align:center;float:left;color:Red;}

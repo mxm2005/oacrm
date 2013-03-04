@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 using OA_CRM.Models;
 using EmitMapper;
@@ -128,6 +129,29 @@ namespace OA_CRM.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult ULogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ULogin(string username ,string password)
+        {
+            ADM_USER mo = etMgr.ADM_USER.FirstOrDefault(m => m.USERNAME == username);
+            if (mo != null && mo.PASSWORD == Com.Mxm.EncryptionHelper.EncodeMD5(password))
+            {
+                FormsAuthentication.RedirectFromLoginPage(username, true);
+                Response.Redirect("/"); 
+            }
+            else
+            {
+                var msg = "用户名或密码错误";
+                ViewBag.msg = msg;
+                //Response.Write("<script type='text/javascript'>alert('" + msg + "');</script>");
+            }
+            return View();
         }
     }
 }

@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+@model OA_CRM.Models.ADM_USER
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ULogin</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div style="width: 400px; margin: 150px auto; height: 200px; border: solid 1px #AAA;">
+            <div style="margin: 60px auto; text-align: center;">
+                用户名：@Html.EditorFor(model => model.USERNAME)
+                <br />
+                <br />
+                密&nbsp;&nbsp;码：@Html.PasswordFor(model => model.PASSWORD)
+                <br />
+                <br />
+                <span style="display: block;">
+                    <input type="submit" value="登 录" /></span>
+                    <div id="divMsg" style="color:Red">@ViewBag.msg</div>
+            </div>
+        </div>
+    }
+</body>
+</html>

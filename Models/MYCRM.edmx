@@ -13,6 +13,7 @@
           <EntitySet Name="CUSTOMER" EntityType="MYCRMModel.Store.CUSTOMER" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DEPT" EntityType="MYCRMModel.Store.DEPT" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GRANT_MENU" EntityType="MYCRMModel.Store.GRANT_MENU" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MENU" EntityType="MYCRMModel.Store.MENU" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MESSAGE_HISTORY" EntityType="MYCRMModel.Store.MESSAGE_HISTORY" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MSG_RECEIVE_LIST" EntityType="MYCRMModel.Store.MSG_RECEIVE_LIST" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="REF_ROLE_GRANT" EntityType="MYCRMModel.Store.REF_ROLE_GRANT" store:Type="Tables" store:Schema="dbo" store:Name="REF_ROLE_GRANT">
@@ -20,6 +21,12 @@
       [REF_ROLE_GRANT].[ROLE_ID] AS [ROLE_ID], 
       [REF_ROLE_GRANT].[GRANT_ID] AS [GRANT_ID]
       FROM [dbo].[REF_ROLE_GRANT] AS [REF_ROLE_GRANT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="REF_ROLE_MENU" EntityType="MYCRMModel.Store.REF_ROLE_MENU" store:Type="Tables" store:Schema="dbo" store:Name="REF_ROLE_MENU">
+            <DefiningQuery>SELECT 
+      [REF_ROLE_MENU].[ROLE_ID] AS [ROLE_ID], 
+      [REF_ROLE_MENU].[MENU_ID] AS [MENU_ID]
+      FROM [dbo].[REF_ROLE_MENU] AS [REF_ROLE_MENU]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="REF_USER_DEPT" EntityType="MYCRMModel.Store.REF_USER_DEPT" store:Type="Tables" store:Schema="dbo" store:Name="REF_USER_DEPT">
             <DefiningQuery>SELECT 
@@ -56,8 +63,8 @@
             <PropertyRef Name="USER_ID" />
           </Key>
           <Property Name="USER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="USERNAME" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="PASSWORD" Type="varchar" MaxLength="20" />
+          <Property Name="USERNAME" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="50" />
           <Property Name="STATE" Type="numeric" Precision="2" />
           <Property Name="LOGIN_TIME" Type="datetime" />
           <Property Name="REAL_NAME" Type="varchar" MaxLength="20" />
@@ -149,6 +156,18 @@
           <Property Name="GRANT_NAME" Type="varchar" MaxLength="50" />
           <Property Name="GRANT_DESC" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="MENU_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="URL" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="TARGET" Type="varchar" MaxLength="256" />
+          <Property Name="PERMISSION" Type="int" />
+          <Property Name="STATUS" Type="smallint" />
+          <Property Name="PARENT_ID" Type="int" />
+        </EntityType>
         <EntityType Name="MESSAGE_HISTORY">
           <Key>
             <PropertyRef Name="MSG_HIS_ID" />
@@ -169,8 +188,8 @@
           <Property Name="ADM_USER_ID" Type="int" />
           <Property Name="IS_READED" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'MYCRM.dbo.REF_ROLE_GRANT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“MYCRM.dbo.REF_ROLE_GRANT”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
       -->
         <EntityType Name="REF_ROLE_GRANT">
           <Key>
@@ -180,8 +199,19 @@
           <Property Name="ROLE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="GRANT_ID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'MYCRM.dbo.REF_USER_DEPT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“MYCRM.dbo.REF_ROLE_MENU”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="REF_ROLE_MENU">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="int" Nullable="false" />
+          <Property Name="MENU_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“MYCRM.dbo.REF_USER_DEPT”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
       -->
         <EntityType Name="REF_USER_DEPT">
           <Key>
@@ -191,8 +221,8 @@
           <Property Name="USER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="DEPT_ID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'MYCRM.dbo.REF_USER_ROLE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“MYCRM.dbo.REF_USER_ROLE”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
       -->
         <EntityType Name="REF_USER_ROLE">
           <Key>
@@ -291,6 +321,8 @@
             <End Role="MESSAGE_HISTORY" EntitySet="MESSAGE_HISTORY" />
             <End Role="MSG_RECEIVE_LIST" EntitySet="MSG_RECEIVE_LIST" />
           </AssociationSet>
+          <EntitySet Name="MENU" EntityType="MYCRMModel.MENU" />
+          <EntitySet Name="REF_ROLE_MENU" EntityType="MYCRMModel.REF_ROLE_MENU" />
         </EntityContainer>
         <EntityType Name="ADM_USER">
           <Key>
@@ -497,6 +529,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Type="Int32" Name="MENU_ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="URL" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Type="String" Name="TARGET" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="PERMISSION" />
+          <Property Type="Int16" Name="STATUS" />
+          <Property Type="Int32" Name="PARENT_ID" />
+        </EntityType>
+        <EntityType Name="REF_ROLE_MENU">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
+          <Property Type="Int32" Name="MENU_ID" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -630,6 +682,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MENU">
+            <EntityTypeMapping TypeName="MYCRMModel.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="PERMISSION" ColumnName="PERMISSION" />
+                <ScalarProperty Name="TARGET" ColumnName="TARGET" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_ROLE_MENU">
+            <EntityTypeMapping TypeName="MYCRMModel.REF_ROLE_MENU">
+              <MappingFragment StoreEntitySet="REF_ROLE_MENU">
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -680,6 +753,8 @@
           <ConnectorPoint PointX="8.625" PointY="5.1454166666666694" />
           <ConnectorPoint PointX="9.125" PointY="5.1454166666666694" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="MYCRMModel.MENU" Width="1.5" PointX="0.75" PointY="7.375" Height="1.9594531250000031" />
+        <EntityTypeShape EntityType="MYCRMModel.REF_ROLE_MENU" Width="1.5" PointX="0.75" PointY="5.875" Height="1.2849739583333388" />
       </Diagram>
     </Diagrams>
   </Designer>
