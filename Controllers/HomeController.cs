@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Objects;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace OA_CRM.Controllers
     {
         //
         // GET: /Home/
-        MYCRMEntities etMgr = new MYCRMEntities();
+        MYCRMEntities etMgr;
         public ActionResult Index()
         {
             return View();
@@ -49,9 +50,14 @@ namespace OA_CRM.Controllers
 
         private string GetUsers()
         {
-            IEnumerable<MENU> list = from m in etMgr.MENU.OfType<MENU>()
-                                     where m.PARENT_ID == 0
-                                     select m;
+            IList<MENU> list;            
+            using (etMgr = new MYCRMEntities())
+            {
+                var lst = from m in etMgr.MENU.OfType<MENU>()
+                       where m.PARENT_ID == 0
+                       select m;
+                list = lst.ToList<MENU>();
+            }
             StringBuilder sb = new StringBuilder();
             StringWriter sw = new StringWriter(sb);
             using (JsonWriter jsonWriter = new JsonTextWriter(sw))
@@ -69,7 +75,12 @@ namespace OA_CRM.Controllers
                     jsonWriter.WriteValue(m.URL);
                     jsonWriter.WritePropertyName("target");
                     jsonWriter.WriteValue(string.IsNullOrEmpty(m.TARGET.Trim()) ? "_parent" : m.TARGET);
-                    if (etMgr.MENU.Count(me => me.PARENT_ID == m.MENU_ID) > 0)
+                    int count = 0;
+                    using (etMgr = new MYCRMEntities())
+                    {
+                        count = etMgr.MENU.Count(me => me.PARENT_ID == m.MENU_ID);
+                    }
+                    if (count> 0)
                     {
                         jsonWriter.WritePropertyName("nodes");
                         sb.Append(GetChildStr(m.MENU_ID));
@@ -86,9 +97,14 @@ namespace OA_CRM.Controllers
             string reVal = string.Empty;
             if (parent_id > 0)
             {
-                IEnumerable<MENU> list = from m in etMgr.MENU.OfType<MENU>()
-                                         where m.PARENT_ID == parent_id
-                                         select m;
+                IList<MENU> list;
+                using (etMgr = new MYCRMEntities())
+                {
+                    var lst = from m in etMgr.MENU.OfType<MENU>()
+                           where m.PARENT_ID == parent_id
+                           select m;
+                    list = lst.ToList<MENU>();
+                }                
                 StringBuilder sb = new StringBuilder();
                 StringWriter sw = new StringWriter(sb);
                 using (JsonWriter jsonWriter = new JsonTextWriter(sw))
@@ -106,7 +122,12 @@ namespace OA_CRM.Controllers
                         jsonWriter.WriteValue(m.URL);
                         jsonWriter.WritePropertyName("target");
                         jsonWriter.WriteValue(string.IsNullOrEmpty(m.TARGET.Trim()) ? "_parent" : m.TARGET);
-                        if (etMgr.MENU.Count(me => me.PARENT_ID == m.MENU_ID) > 0)
+                        int count = 0;
+                        using (etMgr = new MYCRMEntities())
+                        {
+                            count = etMgr.MENU.Count(me => me.PARENT_ID == m.MENU_ID);
+                        }
+                        if (count > 0)
                         {
                             jsonWriter.WritePropertyName("nodes");
                             sb.Append(GetChildStr(m.MENU_ID));

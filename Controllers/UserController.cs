@@ -137,13 +137,15 @@ namespace OA_CRM.Controllers
         }
 
         [HttpPost]
-        public ActionResult ULogin(string username ,string password)
+        public ActionResult ULogin(string username, string password)
         {
-            ADM_USER mo = etMgr.ADM_USER.FirstOrDefault(m => m.USERNAME == username);
+            string sql = "select top 1 * from adm_user where username=@username";
+            ADM_USER mo = etMgr.ExecuteStoreQuery<ADM_USER>(sql,
+                new System.Data.SqlClient.SqlParameter("username", username)).FirstOrDefault<ADM_USER>();
             if (mo != null && mo.PASSWORD == Com.Mxm.EncryptionHelper.EncodeMD5(password))
             {
                 FormsAuthentication.RedirectFromLoginPage(username, true);
-                Response.Redirect("/"); 
+                Response.Redirect("/");
             }
             else
             {

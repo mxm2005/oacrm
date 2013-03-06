@@ -37,6 +37,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Com.Mxm.v4.dll</HintPath>
     </Reference>
+    <Reference Include="EFProviderWrapperToolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=def642f226e0e59b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EFProviderWrapperToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="EFTracingProvider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=def642f226e0e59b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EFTracingProvider.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah, Version=1.0.10617.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Elmah.dll</HintPath>
@@ -80,9 +88,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ajax\GetMenu.ashx.cs">
-      <DependentUpon>GetMenu.ashx</DependentUpon>
-    </Compile>
     <Compile Include="ajax\GetUsers.ashx.cs">
       <DependentUpon>GetUsers.ashx</DependentUpon>
     </Compile>
@@ -102,6 +107,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddMsg.cs" />
+    <Compile Include="Models\ExEntity.cs" />
     <Compile Include="Models\FormCollectionMapConfig.cs" />
     <Compile Include="Models\MYCRM.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -116,6 +122,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Com.Mxm.v4.dll" />
+    <Content Include="bin\EFProviderWrapperToolkit.dll" />
+    <Content Include="bin\EFTracingProvider.dll" />
     <Content Include="bin\Elmah.dll" />
     <Content Include="bin\EmitMapper.dll" />
     <Content Include="bin\mvc_pager.dll" />
@@ -426,7 +434,6 @@
     <Content Include="ajax\GetUsers.ashx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ajax\GetMenu.ashx" />
     <None Include="lodop4\npActiveX0712SFx31.xpi" />
     <Content Include="Views\User\ULogin.cshtml" />
     <Content Include="副本 Web.config">

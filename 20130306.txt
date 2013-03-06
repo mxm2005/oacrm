@@ -1,0 +1,32 @@
+SELECT TOP (1) 
+[Extent1].[USER_ID] AS [USER_ID], 
+[Extent1].[USERNAME] AS [USERNAME], 
+[Extent1].[PASSWORD] AS [PASSWORD], 
+[Extent1].[STATE] AS [STATE], 
+[Extent1].[LOGIN_TIME] AS [LOGIN_TIME], 
+[Extent1].[REAL_NAME] AS [REAL_NAME], 
+[Extent1].[SEX] AS [SEX], 
+[Extent1].[BIRTH] AS [BIRTH], 
+[Extent1].[ADDRESS] AS [ADDRESS], 
+[Extent1].[TEL] AS [TEL], 
+[Extent1].[MOBILE] AS [MOBILE], 
+[Extent1].[POSTCODE] AS [POSTCODE]
+FROM [dbo].[ADM_USER] AS [Extent1]
+WHERE [Extent1].[USERNAME] = @p__linq__0
+-- p__linq__0 (dbtype=AnsiString, size=-1, direction=Input) = "wu6666"
+SELECT TOP (1) 
+[Extent1].[USER_ID] AS [USER_ID], 
+[Extent1].[USERNAME] AS [USERNAME], 
+[Extent1].[PASSWORD] AS [PASSWORD], 
+[Extent1].[STATE] AS [STATE], 
+[Extent1].[LOGIN_TIME] AS [LOGIN_TIME], 
+[Extent1].[REAL_NAME] AS [REAL_NAME], 
+[Extent1].[SEX] AS [SEX], 
+[Extent1].[BIRTH] AS [BIRTH], 
+[Extent1].[ADDRESS] AS [ADDRESS], 
+[Extent1].[TEL] AS [TEL], 
+[Extent1].[MOBILE] AS [MOBILE], 
+[Extent1].[POSTCODE] AS [POSTCODE]
+FROM [dbo].[ADM_USER] AS [Extent1]
+WHERE [Extent1].[USERNAME] = @p__linq__0
+-- p__linq__0 (dbtype=AnsiString, size=-1, direction=Input) = "wu6666"
