@@ -17,7 +17,7 @@ namespace OA_CRM
             //this.Lable1.Text = this.Request.QueryString["Message"];
             if (Server.GetLastError() != null)
             {
-                this.Lable1.Text = this.Server.GetLastError().InnerException.Message;
+                this.Lable1.Text = this.Server.GetLastError().Message;
                 Server.ClearError();
             }
         }

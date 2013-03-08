@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OA_CRM.Models;
-using EmitMapper;//使用第三方DLL 
 
 namespace OA_CRM.Controllers
 {
@@ -45,26 +44,30 @@ namespace OA_CRM.Controllers
 
         [HttpPost]
         public ActionResult Add(CUSTOMER model)
-        {
+        {            
             try
             {
-                // 增加数据
-                var mapper = EmitMapper.ObjectMapperManager.DefaultInstance.GetMapper<CUSTOMER, CUSTOMER>();//引用EmitMapper.dll 将Form表单传来的参数 转换成DTO的数据传输对象
-                CUSTOMER customer = mapper.Map(model);
-                etMgr.AddToCUSTOMER(customer);
-                if (etMgr.SaveChanges() != 0)
+                if (ModelState.IsValid)
                 {
+                    etMgr.AddToCUSTOMER(model);
+                    if (etMgr.SaveChanges() != 0)
+                    {
 
-                    return RedirectToAction("CusList");
+                        return RedirectToAction("CusList");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Add");
+                    }
                 }
                 else
                 {
                     return RedirectToAction("Add");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Com.Mxm.WriteTxt.WriteText(ex.Message + ex.StackTrace);
+                Com.Mxm.WriteTxt.WriteText(DateTime.Now.ToString() + "\t\n" + ex.Message + ex.StackTrace);
                 return View();
             }
         }

@@ -27,3 +27,8 @@ a
 
 .btn1{border:none;background:url(/Content/images/btn-bg1.gif) no-repeat;width:70px;height:29px;color:#FFF;cursor:pointer;font-weight:bold;}
 .btn2{border:none;background:url(/Content/images/btn-bg2.gif) no-repeat;width:114px;height:22px;color:#FFF;cursor:pointer;font-weight:bold;}
+
+.addForm{text-align:left;line-height:22px;}
+
+fieldset{text-align:left;}
+fieldset input{height:22px;width:300px;}

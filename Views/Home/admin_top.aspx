@@ -10,7 +10,7 @@
     <div class="head-bar" id="header">        
         <div class="head-right">
             <div class="label-login">
-                <a href="javascript:;">登录</a> <a href="javascript:;">退出</a></div>
+                <a href="/User/ULogin" target="_top">登录</a> <a href="/User/ULogout" target="_top">退出</a></div>
             <div class="tab1">
                 <span><a href="javascript:;">便笺</a></span>&nbsp;&nbsp;<span><a href="javascript:;">日历</a></span>
                 </div>

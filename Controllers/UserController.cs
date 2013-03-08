@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.Web.Security;
 
 using OA_CRM.Models;
-using EmitMapper;
 
 namespace OA_CRM.Controllers
 {
@@ -15,8 +14,12 @@ namespace OA_CRM.Controllers
         OA_CRM.Models.MYCRMEntities etMgr = new Models.MYCRMEntities();
         //
         // GET: /User/
-        public ActionResult Index()
+        public ActionResult Index(string? page)
         {
+            if (!string.IsNullOrEmpty(page))
+            {
+
+            }
             var lst = etMgr.ADM_USER.ToList<ADM_USER>();
             return View(lst);
         }
@@ -153,6 +156,13 @@ namespace OA_CRM.Controllers
                 ViewBag.msg = msg;
                 //Response.Write("<script type='text/javascript'>alert('" + msg + "');</script>");
             }
+            return View();
+        }
+
+        public ActionResult ULogout()
+        {
+            FormsAuthentication.SignOut();
+            Response.Redirect("/User/ULogin");
             return View();
         }
     }

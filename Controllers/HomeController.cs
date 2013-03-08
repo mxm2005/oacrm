@@ -54,7 +54,7 @@ namespace OA_CRM.Controllers
             using (etMgr = new MYCRMEntities())
             {
                 var lst = from m in etMgr.MENU.OfType<MENU>()
-                       where m.PARENT_ID == 0
+                       where m.PARENT_ID == 0 && m.STATUS==1                       
                        select m;
                 list = lst.ToList<MENU>();
             }
@@ -78,7 +78,7 @@ namespace OA_CRM.Controllers
                     int count = 0;
                     using (etMgr = new MYCRMEntities())
                     {
-                        count = etMgr.MENU.Count(me => me.PARENT_ID == m.MENU_ID);
+                        count = etMgr.MENU.Count(me => me.PARENT_ID == m.MENU_ID && me.STATUS==1);
                     }
                     if (count> 0)
                     {
@@ -101,7 +101,7 @@ namespace OA_CRM.Controllers
                 using (etMgr = new MYCRMEntities())
                 {
                     var lst = from m in etMgr.MENU.OfType<MENU>()
-                           where m.PARENT_ID == parent_id
+                           where m.PARENT_ID == parent_id && m.STATUS==1
                            select m;
                     list = lst.ToList<MENU>();
                 }                
@@ -125,7 +125,7 @@ namespace OA_CRM.Controllers
                         int count = 0;
                         using (etMgr = new MYCRMEntities())
                         {
-                            count = etMgr.MENU.Count(me => me.PARENT_ID == m.MENU_ID);
+                            count = etMgr.MENU.Count(me => me.PARENT_ID == m.MENU_ID && me.STATUS==1);
                         }
                         if (count > 0)
                         {

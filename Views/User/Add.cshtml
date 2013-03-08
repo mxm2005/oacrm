@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>添加用户</title>
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/style.css?v=1")" />
 </head>
 <body>
     <div>
@@ -88,11 +89,11 @@
                     @Html.ValidationMessageFor(model => model.POSTCODE)
                 </div>
                 <p>
-                    <input type="submit" value="提 交" />
+                    <input type="submit" value="提 交" style="width:80px;" />
                 </p>
             </fieldset>
         }
-        <div>
+        <div class="addForm">
             @Html.ActionLink("返回列表", "Index")
         </div>
     </div>

@@ -1,0 +1,7 @@
+EntityCollection 已初始化。在反序列化对象图期间仅应调用 InitializeRelatedCollection 方法以初始化新 EntityCollection。   在 System.Data.Objects.DataClasses.RelationshipManager.InitializeRelatedCollection[TTargetEntity](String relationshipName, String targetRoleName, EntityCollection`1 entityCollection)
+   在 OA_CRM.Models.CUSTOMER.set_CONTACT_RECORD(EntityCollection`1 value) 位置 D:\mxmcode\OA_CRM\OA_CRM\Models\MYCRM.Designer.cs:行号 2158
+   在 ObjectsMapper1_OA_CRM.Models.CUSTOMER_OA_CRM.Models.CUSTOMER1ac5551659144481f850cbc631ceae7d1.MapImpl(Object , Object , Object )
+   在 EmitMapper.Mappers.ObjectsMapperBaseImpl.Map(Object from, Object to, Object state)
+   在 EmitMapper.Mappers.ObjectsMapperBaseImpl.Map(Object from)
+   在 EmitMapper.ObjectsMapper`2.Map(TFrom from)
+   在 OA_CRM.Controllers.CusController.Add(CUSTOMER model) 位置 D:\mxmcode\OA_CRM\OA_CRM\Controllers\CusController.cs:行号 54

@@ -120,6 +120,9 @@
             </table>
         </div>
     </div>
+    <div>
+    @Html.Raw(Com.Mxm.PagerExtensions.Pager(this.Html,"page",10,Model.Count()))
+    </div>
 </body>
 </html>
 

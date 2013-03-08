@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OA_CRM.Models;
-using EmitMapper;//使用第三方DLL 
 
 namespace OA_CRM.Controllers
 {
@@ -44,19 +43,20 @@ namespace OA_CRM.Controllers
             try
             {
                 // 增加数据
-                var mapper = EmitMapper.ObjectMapperManager.DefaultInstance.GetMapper<MESSAGE_HISTORY, MESSAGE_HISTORY>();
-                MESSAGE_HISTORY msg = mapper.Map(model);
-                msg.SEND_TIME = DateTime.Now;
-                etMgr.AddToMESSAGE_HISTORY(msg);
-                if (etMgr.SaveChanges() != 0)
+                if (ModelState.IsValid)
                 {
+                    //etMgr.AddToMESSAGE_HISTORY(msg);
+                    if (etMgr.SaveChanges() != 0)
+                    {
 
-                    return RedirectToAction("Index");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Add");
+                    }
                 }
-                else
-                {
-                    return RedirectToAction("Add");
-                }
+                return RedirectToAction("Add");
             }
             catch (Exception ex)
             {
